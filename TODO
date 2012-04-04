@@ -1,0 +1,4 @@
+= TODO
+
+ * Make some parameter that allows to specify http codes that doesn't need
+   retrying

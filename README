@@ -1,55 +1,87 @@
-LWP-Attempt
+NAME
+    LWP::Attempt - repeat GET or POST several times in case of error
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
+VERSION
+    Version 0.01
 
-A README file is required for CPAN modules since CPAN extracts the README
-file from a module distribution so that people browsing the archive
-can use it to get an idea of the module's uses. It is usually a good idea
-to provide version information here so that people can decide whether
-fixes for the module are worth downloading.
+SYNOPSIS
+        use LWP::Attempt;
 
+        my $la = LWP::Attempt->new(
+            tries => 5,     # default 3
+            delay => 2,     # default 1
+        );
 
-INSTALLATION
+        my $content = $la->get('http://bessarabov.ru/');
 
-To install this module, run the following commands:
+        $la->post(
+            'http://bessarabov.ru/',
+            params => [
+                param1 => 'value1',
+                param2 => 'value2',
+            ],
+        );
 
-	perl Makefile.PL
-	make
-	make test
-	make install
+METHODS
+  new
+        my $la = LWP::Attempt->new(
+            tries => 5,             # default 3
+            delay => 2,             # default 1
+            agent => 'MyModule'     # default is "LWP::Attempt/$VERSION "
+        );
 
-SUPPORT AND DOCUMENTATION
+  get
+        my $content = $la->get('http://bessarabov.ru/');
 
-After installing, you can find documentation for this module with the
-perldoc command.
+  post
+        $la->post(
+            'http://bessarabov.ru/',
+            params => [
+                param1 => 'value1',
+                param2 => 'value2',
+            ],
+        );
 
-    perldoc LWP::Attempt
+AUTHOR
+    Ivan Bessarabov, `<ivan at bessarabov.ru>'
 
-You can also look for information at:
+BUGS
+    Please report any bugs or feature requests to `bug-lwp-attempt at
+    rt.cpan.org', or through the web interface at
+    http://rt.cpan.org/NoAuth/ReportBug.html?Queue=LWP-Attempt. I will be
+    notified, and then you'll automatically be notified of progress on your
+    bug as I make changes.
 
-    RT, CPAN's request tracker
+SOURCE CODE
+    The source code for this module is hosted on GitHub
+    http://github.com/bessarabov/LWP-Attempt
+
+SUPPORT
+    You can find documentation for this module with the perldoc command.
+
+        perldoc LWP::Attempt
+
+    You can also look for information at:
+
+    * RT: CPAN's request tracker
         http://rt.cpan.org/NoAuth/Bugs.html?Dist=LWP-Attempt
 
-    AnnoCPAN, Annotated CPAN documentation
+    * AnnoCPAN: Annotated CPAN documentation
         http://annocpan.org/dist/LWP-Attempt
 
-    CPAN Ratings
+    * CPAN Ratings
         http://cpanratings.perl.org/d/LWP-Attempt
 
-    Search CPAN
+    * Search CPAN
         http://search.cpan.org/dist/LWP-Attempt/
 
-
+ACKNOWLEDGEMENTS
 LICENSE AND COPYRIGHT
+    Copyright 2012 Ivan Bessarabov.
 
-Copyright (C) 2012 Ivan Bessarabov
+    This program is free software; you can redistribute it and/or modify it
+    under the terms of either: the GNU General Public License as published
+    by the Free Software Foundation; or the Artistic License.
 
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
-
-See http://dev.perl.org/licenses/ for more information.
+    See http://dev.perl.org/licenses/ for more information.
 
